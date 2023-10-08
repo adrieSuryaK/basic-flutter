@@ -1,4 +1,4 @@
-# kuliah_flutter
+# basic-flutter
 
 A new Flutter project.
 
