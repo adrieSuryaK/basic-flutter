@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:shimmer/shimmer.dart';
 import 'gambar_row.dart';
 
 class BerandaRestoran extends StatelessWidget {
@@ -13,7 +15,7 @@ class BerandaRestoran extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.brown.shade50,
       appBar: AppBar(
-        title: const Text('Angkringan Solo'),
+        title: const Text('Beranda'),
         backgroundColor: Colors.brown.shade900,
       ),
       body: Column(
@@ -21,27 +23,43 @@ class BerandaRestoran extends StatelessWidget {
           Center(
             child: Image.asset(
               'images/angkringan.png',
-              width: 250,
-              height: 250,
+              width: 150,
+              height: 150,
             ),
           ),
-          const Text(
-            'SUGENG DAHAR SLUR',
-            style: TextStyle(
-              fontFamily: 'roboto',
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
+          RichText(
+            text: TextSpan(
+              children: [
+                WidgetSpan(
+                  child: AnimatedTextEffect(
+                    text: 'ANGKRINGAN LEZAT  ',
+                    textStyle: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    delay: Duration(milliseconds: 2000),
+                  ),
+                ),
+                TextSpan(
+                  text: '😎',
+                  style: TextStyle(
+                    fontFamily: 'roboto',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+              ],
             ),
           ),
           Container(
-              margin: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+              margin: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.brown.shade100,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: const Text(
-                'Angkringan (berasal dari bahasa Jawa angkring yang berarti alat dan tempat jualan makanan keliling yang pikulannya berbentuk melengkung ke atas) adalah sebuah gerobak dorong untuk menjual berbagai macam makanan dan minuman di pinggir jalan di Jawa Tengah, Daerah Istimewa Yogyakarta, dan Jawa Timur. Di Solo maupun Klaten angkringan dikenal sebagai warung HIK (Hidangan Istimewa Kampung, kadang juga disebut Hidangan Istimewa Klaten) atau wedangan.',
+                'Selamat datang di Angkringan Lezat. Angkringan berasal dari bahasa Jawa angkring yaitu sebuah gerobak dorong untuk menjual berbagai macam makanan dan minuman di pinggir jalan dan biasanya menjadi korban ngebon pelanggannya. Di Solo  angkringan dikenal sebagai warung HIK (Hidangan Istimewa Kampung) atau wedangan. Disini dilarang ngebon, siap terima cash & QRIS.',
                 textAlign: TextAlign.justify,
               )),
           const Text(
@@ -63,39 +81,17 @@ class BerandaRestoran extends StatelessWidget {
                         'https://i0.wp.com/i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/22739e1e-dd61-43d3-baa9-895508f6b59e_Go-Biz_20230129_181053.jpeg',
                     imageUrl3:
                         'https://64.media.tumblr.com/avatar_1702307b08b0_128.pnj',
+                    imageUrl4:
+                        'https://betv.disway.id/upload/6eeb82df7f4dfb9b556968cb4e36c254.jpg',
+                    imageUrl5:
+                        'https://statik.tempo.co/data/2022/12/23/id_1167974/1167974_720.jpg',
                   ),
                 ],
               ),
-              if (imageUrl3 ==
-                  'https://64.media.tumblr.com/avatar_1702307b08b0_128.pnj')
-                Positioned(
-                  top: 15,
-                  right: 40,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 4,
-                          offset: Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    padding: EdgeInsets.all(5),
-                    child: Image.network(
-                      'https://cdn.iconscout.com/icon/free/png-256/free-heart-love-like-favorite-romance-gift-16-28686.png',
-                      width: 15,
-                      height: 15,
-                    ),
-                  ),
-                ),
             ],
           ),
           Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(10.0),
             child: ElevatedButton(
               onPressed: () {
                 _showSuccessDialog(context);
@@ -103,7 +99,7 @@ class BerandaRestoran extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.brown.shade900,
               ),
-              child: Text('Pesan Sekarang'),
+              child: Text('Bayar Sekarang'),
             ),
           ),
         ],
@@ -133,6 +129,35 @@ class BerandaRestoran extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+}
+
+class AnimatedTextEffect extends StatelessWidget {
+  final String text;
+  final TextStyle textStyle;
+  final Duration delay;
+
+  const AnimatedTextEffect({
+    Key? key,
+    required this.text,
+    required this.textStyle,
+    required this.delay,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Animate(
+      delay: delay,
+      child: Shimmer.fromColors(
+        baseColor: Colors.black,
+        highlightColor: Color.fromARGB(255, 247, 129, 26),
+        child: Text(
+          text,
+          style: textStyle,
+          textAlign: TextAlign.center,
+        ),
+      ),
     );
   }
 }
