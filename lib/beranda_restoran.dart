@@ -23,8 +23,8 @@ class BerandaRestoran extends StatelessWidget {
           Center(
             child: Image.asset(
               'images/angkringan.png',
-              width: 150,
-              height: 150,
+              width: 125,
+              height: 125,
             ),
           ),
           RichText(
@@ -52,7 +52,7 @@ class BerandaRestoran extends StatelessWidget {
             ),
           ),
           Container(
-              margin: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
+              margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 color: Colors.brown.shade100,

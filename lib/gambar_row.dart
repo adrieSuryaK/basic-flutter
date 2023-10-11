@@ -30,7 +30,7 @@ class _GambarRowState extends State<GambarRow> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
+      height: 170,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20),
         child: ListView(
